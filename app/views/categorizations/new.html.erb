@@ -1,0 +1,17 @@
+<h1>Categorize</h1>
+
+<div>
+  <% if @categorization.errors.present? %>
+    <% @categorization.errors.full_messages.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= image_tag(@kitten.image) %>
+
+<%= form_for [@kitten, @categorization] do |f| %>
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: "Please choose a category"}, {} %>
+  <%= f.submit "Add Category" %>
+<% end %>
